@@ -5,7 +5,7 @@ module.exports.hello = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: "Test execute on AWS",
+      message: "This is from dev branch",
       input: event,
     }),
   };
