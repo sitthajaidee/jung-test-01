@@ -1,0 +1,41 @@
+service: jung-test01
+# app and org for use with dashboard.serverless.com
+app: jung-test01-app
+# org: jung test1 company
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+  # you can overwrite defaults here
+  stage: dev
+  region: ap-southeast-1
+  iam:
+    role:
+      name: jung-test01-lambda-role
+      statements:
+        - Effect: Allow
+          Action:
+            - lambda:InvokeFunction
+          Resource: "*"
+          Condition:
+            StringEquals:
+              aws:PrincipalArn: arn:aws:iam::516577126946:user/sitthaja
+
+functions:
+  hello:
+    handler: handler/handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
+  goodmorning:
+    handler: handler/goodmorning.goodmorning
+    events:
+      - http:
+          path: goodmorning
+          method: post
