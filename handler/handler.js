@@ -5,7 +5,7 @@ module.exports.hello = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: "This is from dev branch",
+      message: "This is from dev branch #2",
       input: event,
     }),
   };
