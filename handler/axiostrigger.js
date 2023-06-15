@@ -12,11 +12,10 @@ module.exports.axiostrigger = async (event) => {
     // Receive query param in URL like dev/axiostrigger?n=2
     const n = event.queryStringParameters && event.queryStringParameters.n;
     const selectedTitle = title[n];
+    const responseBody = { axiostriggerResult: selectedTitle };
     return {
       statusCode: 200,
-      body: JSON.stringify({
-        message: selectedTitle,
-      }),
+      body: JSON.stringify(responseBody),
     };
   } catch (error) {
     console.error(error);
