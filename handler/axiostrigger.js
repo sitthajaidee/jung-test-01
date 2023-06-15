@@ -7,9 +7,20 @@ module.exports.axiostrigger = async (event) => {
     const response = await axios.get(url);
     const responseData = response.data;
     const title = responseData.products.map((product) => product.title);
-    console.log(title);
+    console.log("It's WORKING ", title);
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: title,
+      }),
+    };
   } catch (error) {
     console.error(error);
-    throw error;
+    return {
+      statusCode: 503,
+      body: JSON.stringify({
+        message: "Web service unavailable",
+      }),
+    };
   }
 };
