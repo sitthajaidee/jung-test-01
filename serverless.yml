@@ -43,6 +43,6 @@ functions:
     handler: handler/axiostrigger.axiostrigger
     events:
       - http:
-          path: axios
+          path: axiostrigger
           method: get
           cors: true
