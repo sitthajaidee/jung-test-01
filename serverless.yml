@@ -46,3 +46,31 @@ functions:
           path: axiostrigger
           method: get
           cors: true
+  queryproduct:
+    handler: handler/queryproduct.queryproduct
+    events:
+      - http:
+          path: queryproduct
+          method: get
+          cors: true
+
+stepFunctions:
+  stateMachines:
+    myStateMachine:
+      name: jung-test-step-function-01
+      type: STANDARD
+      definition:
+        StartAt: Axiostrigger
+        States:
+          Axiostrigger:
+            Type: Task
+            Resource:
+              Fn::GetAtt: [axiostrigger, Arn]
+            ResultPath: "$.axiostriggerResult"
+            Next: QueryProduct
+          QueryProduct:
+            Type: Task
+            Resource:
+              Fn::GetAtt: [queryproduct, Arn]
+            InputPath: "$.axiostriggerResult"
+            End: true
