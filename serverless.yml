@@ -39,3 +39,10 @@ functions:
       - http:
           path: goodmorning
           method: post
+  axiostrigger:
+    handler: handler/axiostrigger.axiostrigger
+    events:
+      - http:
+          path: axios
+          method: get
+          cors: true
