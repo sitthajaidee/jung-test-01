@@ -1,11 +1,10 @@
 service: jung-test01
 # app and org for use with dashboard.serverless.com
 app: jung-test01-app
-# org: jung test1 company
-
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
 frameworkVersion: "3"
+
+plugins:
+  - serverless-step-functions
 
 provider:
   name: aws
