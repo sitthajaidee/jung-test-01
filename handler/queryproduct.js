@@ -1,6 +1,6 @@
 module.exports.queryproduct = async (event) => {
-  const inputFromAxiostrigger = event;
-  console.log(inputFromAxiostrigger);
+  const inputFromAxiostrigger = event.selectedTitle;
+  console.log(JSON.stringify(inputFromAxiostrigger));
 
   return {
     // statusCode: 200,
