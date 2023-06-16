@@ -43,6 +43,10 @@ stepFunctions:
             path: axiostrigger
             method: get
             action: StartSyncExecution
+        - http:
+            path: queryproduct
+            method: get
+            action: StartSyncExecution
       name: jung-test-step-function-02
       type: EXPRESS
       definition:
