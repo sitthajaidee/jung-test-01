@@ -43,10 +43,42 @@ stepFunctions:
             path: axiostrigger
             method: get
             action: StartSyncExecution
+            request:
+              template:
+                application/json: |
+                  #set( $body = $util.escapeJavaScript($input.json('$')) )
+                  {
+                    "input": "$body",
+                    "stateMachineArn": "arn:aws:states:${self:provider.region}:516577126946:stateMachine:jung-test-step-function-02"
+                  }
+            response:
+              headers:
+                Content-Type: "'application/json'"
+                X-Application-Id: "'copy from pwow'"
+              template:
+                application/json: |
+                  #set( $output = $util.parseJson($input.json('$.output')) )
+                  $output
         - http:
             path: queryproduct
             method: get
             action: StartSyncExecution
+            request:
+              template:
+                application/json: |
+                  #set( $body = $util.escapeJavaScript($input.json('$')) )
+                  {
+                    "input": "$body",
+                    "stateMachineArn": "arn:aws:states:${self:provider.region}:516577126946:stateMachine:jung-test-step-function-02"
+                  }
+            response:
+              headers:
+                Content-Type: "'application/json'"
+                X-Application-Id: "'copy from pwow'"
+              template:
+                application/json: |
+                  #set( $output = $util.parseJson($input.json('$.output')) )
+                  $output
       name: jung-test-step-function-02
       type: EXPRESS
       definition:
