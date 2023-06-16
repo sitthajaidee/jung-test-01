@@ -15,6 +15,7 @@ module.exports.axiostrigger = async (event) => {
     const responseBody = { axiostriggerResult: selectedTitle };
     return {
       statusCode: 200,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(responseBody),
     };
   } catch (error) {
