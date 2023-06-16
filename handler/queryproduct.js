@@ -3,10 +3,9 @@ module.exports.queryproduct = async (event) => {
   console.log(inputFromAxiostrigger);
 
   return {
-    statusCode: 200,
-    headers: { "Content-Type": "application/json" },
+    // statusCode: 200,
     body: JSON.stringify({
-      message: "This is input from axiostrigger" + inputFromAxiostrigger,
+      message: "This is input from axiostrigger " + inputFromAxiostrigger,
     }),
   };
 };
