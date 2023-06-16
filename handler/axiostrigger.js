@@ -13,7 +13,9 @@ module.exports.axiostrigger = async (event) => {
     const n = event.queryStringParameters && event.queryStringParameters.n;
     const selectedTitle = title[n];
     const responseBody = { axiostriggerResult: selectedTitle };
-    console.log(responseBody);
+    console.log("selectedTitle = ", selectedTitle);
+    console.log("Query-string = ", n);
+    console.log("selectedTitle =", responseBody);
     return responseBody;
   } catch (error) {
     console.error(error);
