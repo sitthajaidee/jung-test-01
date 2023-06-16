@@ -37,13 +37,13 @@ functions:
 
 stepFunctions:
   stateMachines:
-    jungTest01StateMachine:
+    jungTest02StateMachine:
       events:
         - http:
             path: axiostrigger
             method: get
             action: StartSyncExecution
-      name: jung-test-step-function-01
+      name: jung-test-step-function-02
       type: EXPRESS
       definition:
         StartAt: Axiostrigger
