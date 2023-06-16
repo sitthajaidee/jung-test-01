@@ -89,7 +89,7 @@ stepFunctions:
             Resource:
               Fn::GetAtt: [axiostrigger, Arn]
             Parameters:
-              queryStringParameters.$: "$.params.querystring"
+              queryStringParameters.$: "$.n"
             ResultPath: "$.axiostriggerResult"
             Next: QueryProduct
           QueryProduct:
