@@ -7,13 +7,14 @@ module.exports.axiostrigger = async (event) => {
     const response = await axios.get(url);
     const responseData = response.data;
     const title = responseData.products.map((product) => product.title);
-    console.log("Success to get product from API");
+    // console.log("Success to get product from API");
 
     // Receive query param in URL like dev/axiostrigger?n=2
     const n = event.queryStringParameters && event.queryStringParameters.n;
     const selectedTitle = title[n];
-    const responseBody = { axiostriggerResult: selectedTitle };
-    return responseBody;
+    // const responseBody = { axiostriggerResult: selectedTitle };
+    console.log(selectedTitle);
+    return selectedTitle;
   } catch (error) {
     console.error(error);
     return {
