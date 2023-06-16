@@ -88,13 +88,13 @@ stepFunctions:
             Type: Task
             Resource:
               Fn::GetAtt: [axiostrigger, Arn]
-            ResultPath: "$.selectedTitle"
+            ResultPath: "$.axiostriggerResult"
             Next: QueryProduct
           QueryProduct:
             Type: Task
             Resource:
               Fn::GetAtt: [queryproduct, Arn]
-            InputPath: "$.selectedTitle"
+            InputPath: "$.axiostriggerResult"
             End: true
   logs:
     level: INFO
