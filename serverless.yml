@@ -1,6 +1,6 @@
 service: jung-test01
 # app and org for use with dashboard.serverless.com
-app: jung-test01-app
+# app: jung-test01-app
 frameworkVersion: "3"
 
 plugins:
@@ -13,51 +13,38 @@ provider:
   # you can overwrite defaults here
   stage: dev
   region: ap-southeast-1
-  iam:
-    role:
-      name: jung-test01-lambda-role
-      statements:
-        - Effect: Allow
-          Action:
-            - lambda:InvokeFunction
-          Resource: "*"
-          Condition:
-            StringEquals:
-              aws:PrincipalArn: arn:aws:iam::516577126946:user/sitthaja
+  # iam:
+  #   role:
+  #     name: jung-test01-lambda-role
+  #     statements:
+  #       - Effect: Allow
+  #         Action:
+  #           - lambda:InvokeFunction
+  #         Resource: "*"
+  #         Condition:
+  #           StringEquals:
+  #             aws:PrincipalArn: arn:aws:iam::516577126946:user/sitthaja
 
 functions:
   hello:
     handler: handler/handler.hello
-    events:
-      - http:
-          path: hello
-          method: get
   goodmorning:
     handler: handler/goodmorning.goodmorning
-    events:
-      - http:
-          path: goodmorning
-          method: post
   axiostrigger:
     handler: handler/axiostrigger.axiostrigger
-    events:
-      - http:
-          path: axiostrigger
-          method: get
-          cors: true
   queryproduct:
     handler: handler/queryproduct.queryproduct
-    events:
-      - http:
-          path: queryproduct
-          method: get
-          cors: true
 
 stepFunctions:
   stateMachines:
-    myStateMachine:
+    jungTest01StateMachine:
+      events:
+        - http:
+            path: axiostrigger
+            method: get
+            action: StartSyncExecution
       name: jung-test-step-function-01
-      type: STANDARD
+      type: EXPRESS
       definition:
         StartAt: Axiostrigger
         States:
