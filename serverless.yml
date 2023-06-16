@@ -96,3 +96,7 @@ stepFunctions:
               Fn::GetAtt: [queryproduct, Arn]
             InputPath: "$.axiostriggerResult"
             End: true
+  logs:
+    level: INFO
+    frameworkLambda: true
+    stateMachineLambda: true

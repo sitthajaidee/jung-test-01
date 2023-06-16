@@ -1,5 +1,5 @@
 module.exports.queryproduct = async (event) => {
-  const inputFromAxiostrigger = event.axiostriggerResult;
+  const inputFromAxiostrigger = event;
   console.log(inputFromAxiostrigger);
 
   return {
