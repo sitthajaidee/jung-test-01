@@ -1,6 +1,4 @@
 service: jung-test01
-# app and org for use with dashboard.serverless.com
-# app: jung-test01-app
 frameworkVersion: "3"
 
 plugins:
@@ -10,20 +8,19 @@ provider:
   name: aws
   runtime: nodejs18.x
 
-  # you can overwrite defaults here
   stage: dev
   region: ap-southeast-1
-  # iam:
-  #   role:
-  #     name: jung-test01-lambda-role
-  #     statements:
-  #       - Effect: Allow
-  #         Action:
-  #           - lambda:InvokeFunction
-  #         Resource: "*"
-  #         Condition:
-  #           StringEquals:
-  #             aws:PrincipalArn: arn:aws:iam::516577126946:user/sitthaja
+  iam:
+    role:
+      name: jung-test01-lambda-role
+      statements:
+        - Effect: Allow
+          Action:
+            - lambda:InvokeFunction
+          Resource: "*"
+          Condition:
+            StringEquals:
+              aws:PrincipalArn: arn:aws:iam::516577126946:user/sitthaja
 
 functions:
   hello:
@@ -48,7 +45,11 @@ stepFunctions:
                 application/json: |
                   #set( $body = $util.escapeJavaScript($input.json('$')) )
                   {
-                    "input": "$body",
+                    "input": {
+                      "queryStringParameters": {
+                        "n": "$input.params('n')"
+                      }
+                    },
                     "stateMachineArn": "arn:aws:states:${self:provider.region}:516577126946:stateMachine:jung-test-step-function-02"
                   }
             response:
@@ -89,7 +90,7 @@ stepFunctions:
             Resource:
               Fn::GetAtt: [axiostrigger, Arn]
             Parameters:
-              queryStringParameters.$: "$.n"
+              queryStringParameters.$: "$.input.queryStringParamete
             ResultPath: "$.axiostriggerResult"
             Next: QueryProduct
           QueryProduct:
@@ -99,6 +100,6 @@ stepFunctions:
             InputPath: "$.axiostriggerResult"
             End: true
   logs:
-    level: INFO
+    level: ALL
     frameworkLambda: true
     stateMachineLambda: true
