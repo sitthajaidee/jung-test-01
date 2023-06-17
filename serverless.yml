@@ -90,8 +90,8 @@ stepFunctions:
             Resource:
               Fn::GetAtt: [axiostrigger, Arn]
             Parameters:
-              queryStringParameters.$: "$.input.queryStringParamete
-            ResultPath: "$.axiostriggerResult"
+              queryStringParameters.$: "$.input.queryStringParameters"
+              ResultPath: "$.axiostriggerResult"
             Next: QueryProduct
           QueryProduct:
             Type: Task
