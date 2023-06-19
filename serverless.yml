@@ -35,11 +35,6 @@ functions:
 stepFunctions:
   stateMachines:
     jungTest02StateMachine:
-      loggingConfig:
-        level: ALL
-        includeExecutionData: true
-        destinations:
-          - Fn::GetAtt: /aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs
       events:
         - http:
             path: axiostrigger
@@ -88,7 +83,7 @@ stepFunctions:
         level: ALL
         includeExecutionData: false
         destinations:
-          - Fn::GetAtt: [ JungStateMachineLogGroup, Arn ]
+          - Fn::GetAtt: [JungStateMachineLogGroup, Arn]
       definition:
         StartAt: Axiostrigger
         States:
