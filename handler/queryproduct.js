@@ -5,7 +5,7 @@ module.exports.queryproduct = async (event) => {
   return {
     // statusCode: 200,
     body: JSON.stringify({
-      message: "This is input from axiostrigger 04 " + inputFromAxiostrigger,
+      message: "This is input from axiostrigger 09 " + inputFromAxiostrigger,
     }),
   };
 };
