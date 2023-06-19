@@ -98,7 +98,7 @@ stepFunctions:
             End: true
   loggingConfig:
     level: ALL
-          includeExecutionData: true
-          destinations:
-            - cloudWatchLogs:
-                logGroupArn: arn:aws:logs:ap-southeast-1:516577126946:log-group:/aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs:*
+    includeExecutionData: true
+    destinations:
+      - cloudWatchLogs:
+          logGroupArn: arn:aws:logs:ap-southeast-1:516577126946:log-group:/aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs:*
