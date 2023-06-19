@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const url = "https://dummyjson.com/products";
 
-module.exports.axiostrigger = async (event, context, callback) => {
+module.exports.axiostrigger = async (event) => {
   try {
     const response = await axios.get(url);
     const responseData = response.data;

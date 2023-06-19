@@ -43,9 +43,9 @@ stepFunctions:
             request:
               template:
                 application/json: |
-                  # set( $body = $util.escapeJavaScript($input.json('$')) )
+                  #set( $body = $util.escapeJavaScript($input.json('$')) )
                   {
-                    "input": { "queryStringParameters": {"n": "$input.params('n')"}},
+                    "input": "$body",
                     "stateMachineArn": "arn:aws:states:${self:provider.region}:516577126946:stateMachine:jung-test-step-function-02"
                   }
             response:
@@ -86,8 +86,8 @@ stepFunctions:
             Resource:
               Fn::GetAtt: [axiostrigger, Arn]
             Parameters:
-              queryStringParameters.$: "$.input.queryStringParameters"
-              ResultPath: "$.axiostriggerResult"
+              queryStringParameters.$: "$.n"
+            ResultPath: "$.axiostriggerResult"
             Next: QueryProduct
           QueryProduct:
             Type: Task
