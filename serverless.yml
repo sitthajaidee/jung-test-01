@@ -96,7 +96,9 @@ stepFunctions:
               Fn::GetAtt: [queryproduct, Arn]
             InputPath: "$.axiostriggerResult"
             End: true
-  logs:
+  loggingConfig:
     level: ALL
-    frameworkLambda: true
-    stateMachineLambda: true
+          includeExecutionData: true
+          destinations:
+            - cloudWatchLogs:
+                logGroupArn: arn:aws:logs:ap-southeast-1:516577126946:log-group:/aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs:*
