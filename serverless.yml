@@ -40,10 +40,7 @@ stepFunctions:
         includeExecutionData: true
         destinations:
           - Fn::GetAtt:
-              [
-                arn:aws:logs:ap-southeast-1:516577126946:log-group:/aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs,
-                Arn,
-              ]
+              [/aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs, Arn]
       events:
         - http:
             path: axiostrigger
