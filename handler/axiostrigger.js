@@ -28,5 +28,10 @@ module.exports.axiostrigger = (event, context, callback) => {
   //   };
   // }
   console.log("event = ", event);
-  callback(null, null);
+  const response = {
+    statusCode: 200,
+    body: "TEST",
+  };
+
+  callback(null, response);
 };
