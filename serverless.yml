@@ -39,11 +39,7 @@ stepFunctions:
         level: ALL
         includeExecutionData: true
         destinations:
-          - Fn::GetAtt:
-              [
-                arn:aws:logs:ap-southeast-1:516577126946:log-group:/aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs:*,
-                Arn,
-              ]
+          - Fn::GetAtt: /aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs
       events:
         - http:
             path: axiostrigger
@@ -88,6 +84,11 @@ stepFunctions:
                   $output
       name: jung-test-step-function-02
       type: EXPRESS
+      loggingConfig:
+        level: ALL
+        includeExecutionData: false
+        destinations:
+          - Fn::GetAtt: [ JungStateMachineLogGroup, Arn ]
       definition:
         StartAt: Axiostrigger
         States:
@@ -103,3 +104,10 @@ stepFunctions:
               Fn::GetAtt: [queryproduct, Arn]
             InputPath: "$.axiostriggerResult"
             End: true
+
+resources:
+  Resources:
+    JungStateMachineLogGroup:
+      Type: AWS::Logs::LogGroup
+      Properties:
+        LogGroupName: NEW-jung-test-step-function-02-Logs
