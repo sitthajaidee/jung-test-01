@@ -42,11 +42,66 @@ stepFunctions:
             request:
               template:
                 application/json: |
-                  #set( $body = $util.escapeJavaScript($input.json('$')) )
+                  #set($includeHeaders = true)
+                  #set($includeQueryString = true)
+                  #set($includePath = true)
+                  #set($requestContext = '')
+
+                  #set($inputString = '')
+                  #set($allParams = $input.params())
                   {
-                    "input": { "queryStringParameters": { "n": "$input.params('n')" } },
-                    "stateMachineArn": "arn:aws:states:${self:provider.region}:516577126946:stateMachine:jung-test-step-function-02"
+                    "stateMachineArn": "arn:aws:states:${self:provider.region}:516577126946:stateMachine:jung-test-step-function-02",
+                    #set($inputString = "$inputString,@@body@@: $input.body")
+
+                  #if ($includeHeaders)
+                    #set($inputString = "$inputString, @@header@@:{")
+                    #foreach($paramName in $allParams.header.keySet())
+                      #set($inputString = "$inputString @@$paramName@@: @@$util.escapeJavaScript($allParams.header.get($paramName))@@")
+                      #if($foreach.hasNext)
+                        #set($inputString = "$inputString,")
+                      #end
+                    #end
+                    #set($inputString = "$inputString }")
+                  #end
+
+                  #if ($includeQueryString)
+                    #set($inputString = "$inputString, @@querystring@@:{")
+                    #foreach($paramName in $allParams.querystring.keySet())
+                      #set($inputString = "$inputString @@$paramName@@: @@$util.escapeJavaScript($allParams.querystring.get($paramName))@@")
+                      #if($foreach.hasNext)
+                        #set($inputString = "$inputString,")
+                      #end
+                    #end
+                    #set($inputString = "$inputString }")
+                  #end
+
+                  #if ($includePath)
+                    #set($inputString = "$inputString, @@path@@:{")
+                    #foreach($paramName in $allParams.path.keySet())
+                      #set($inputString = "$inputString @@$paramName@@: @@$util.escapeJavaScript($allParams.path.get($paramName))@@")
+                      #if($foreach.hasNext)
+                        #set($inputString = "$inputString,")
+                      #end
+                    #end
+                    #set($inputString = "$inputString }")
+                  #end
+
+                  #if($requestContext && !$requestContext.empty)
+                    #set($inputString = "$inputString,")
+                    #set($inputString = "$inputString @@requestContext@@: $requestContext")
+                  #end
+
+                  #set($inputString = "$inputString}")
+                  #set($inputString = $inputString.replaceAll("@@",'"'))
+                  #set($len = $inputString.length() - 1)
+                  "input": "{$util.escapeJavaScript($inputString.substring(1,$len))}"
                   }
+
+                # #set( $body = $util.escapeJavaScript($input.json('$')) )
+                # {
+                #   "input": { "queryStringParameters": { "n": "$input.params('n')" } },
+                #   "stateMachineArn": "arn:aws:states:${self:provider.region}:516577126946:stateMachine:jung-test-step-function-02"
+                # }
             response:
               headers:
                 Content-Type: "'application/json'"
