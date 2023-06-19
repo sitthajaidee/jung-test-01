@@ -35,6 +35,15 @@ functions:
 stepFunctions:
   stateMachines:
     jungTest02StateMachine:
+      loggingConfig:
+        level: ALL
+        includeExecutionData: true
+        destinations:
+          - Fn::GetAtt:
+              [
+                arn:aws:logs:ap-southeast-1:516577126946:log-group:/aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs:*,
+                Arn,
+              ]
       events:
         - http:
             path: axiostrigger
@@ -86,8 +95,6 @@ stepFunctions:
             Type: Task
             Resource:
               Fn::GetAtt: [axiostrigger, Arn]
-            Parameters:
-              queryStringParameters.$: "$.n"
             ResultPath: "$.axiostriggerResult"
             Next: QueryProduct
           QueryProduct:
@@ -96,9 +103,3 @@ stepFunctions:
               Fn::GetAtt: [queryproduct, Arn]
             InputPath: "$.axiostriggerResult"
             End: true
-  loggingConfig:
-    level: ALL
-    includeExecutionData: true
-    destinations:
-      - cloudWatchLogs:
-          logGroupArn: arn:aws:logs:ap-southeast-1:516577126946:log-group:/aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs:*
