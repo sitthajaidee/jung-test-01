@@ -39,14 +39,11 @@ stepFunctions:
         level: ALL
         includeExecutionData: true
         destinations:
-          [
-            {
-              "cloudWatchLogsLogGroup":
-                {
-                  "logGroupArn": "arn:aws:logs:ap-southeast-1:516577126946:log-group:/aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs:*",
-                },
-            },
-          ]
+          - Fn::GetAtt:
+              [
+                arn:aws:logs:ap-southeast-1:516577126946:log-group:/aws/vendedlogs/states/NEW-jung-test-step-function-02-Logs:*,
+                Arn,
+              ]
       events:
         - http:
             path: axiostrigger
