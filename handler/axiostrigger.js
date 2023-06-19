@@ -17,7 +17,12 @@ module.exports.axiostrigger = async (event) => {
     console.log("selectedTitle = ", selectedTitle);
     console.log("Query-string = ", n);
     console.log("selectedTitle =", responseBody);
-    return responseBody;
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: axiostriggerResult,
+      }),
+    };
   } catch (error) {
     console.error(error);
     return {

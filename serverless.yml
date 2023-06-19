@@ -47,6 +47,7 @@ stepFunctions:
                   {
                     "input": "$body",
                     "stateMachineArn": "arn:aws:states:${self:provider.region}:516577126946:stateMachine:jung-test-step-function-02"
+
                   }
             response:
               headers:
