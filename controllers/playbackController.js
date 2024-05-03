@@ -3,6 +3,8 @@ const crypto = require("crypto");
 exports.generatePlaybackURL = (req, res) => {
   const chid = req.headers["chid"];
   const EXP = Math.floor(Date.now() / 1000) + 3600;
+  const domainEndpoint = "aa66fabcdb4b04ab982072401c5ad107-2059369177.ap-southeast-1.elb.amazonaws.com";
+  const portEndpoint = "3000"
 
   // Generate signature using JavaScript
   const URL = `/live/eds/${chid}/HLS`;
@@ -14,6 +16,6 @@ exports.generatePlaybackURL = (req, res) => {
   hmac.update(`${URL}/${EXP}`);
   const SIG = hmac.digest("hex");
 
-  const playbackURL = `https://localhost:3000/live/eds/${chid}/HLS/${chid}.m3u8?rfkpoc=${EXP}_${SIG}`;
+  const playbackURL = `https://${domainEndpoint}:${portEndpoint}/live/eds/${chid}/HLS/${chid}.m3u8?rfkpoc=${EXP}_${SIG}`;
   res.json({ playbackURL });
 };

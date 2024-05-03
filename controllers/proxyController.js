@@ -5,6 +5,10 @@ exports.proxyRequest = async (req, res) => {
   try {
     const { chid, playlist } = req.params;
 
+    const domainEndpoint =
+      "aa66fabcdb4b04ab982072401c5ad107-2059369177.ap-southeast-1.elb.amazonaws.com";
+    const portEndpoint = "3000";
+
     // Generate new rfkpoc
     const EXP = Math.floor(Date.now() / 1000) + 3600;
     const URL = `/live/eds/${chid}/HLS`;
@@ -43,7 +47,7 @@ exports.proxyRequest = async (req, res) => {
     } else {
       pattern = new RegExp(`${chid}-\\w+=\\d+\\.m3u8`, "g");
       modifiedResponse = response.replace(pattern, (match) => {
-        return `https://localhost:3000/live/eds/${chid}/HLS/${match}?rfkpoc=${rfkpoc}`;
+        return `https://${domainEndpoint}:${portEndpoint}/live/eds/${chid}/HLS/${match}?rfkpoc=${rfkpoc}`;
       });
       contentType = "application/vnd.apple.mpegurl"; // Setting content type for ".m3u8" files
     }
