@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mani-manip
+  labels:
+    app: mani-manip
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mani-manip
+  template:
+    metadata:
+      labels:
+        app: mani-manip
+    spec:
+      containers:
+        - name: sitthaja-test-repo
+          image: 516577126946.dkr.ecr.ap-southeast-1.amazonaws.com/sitthaja-test-repo
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
