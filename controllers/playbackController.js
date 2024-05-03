@@ -3,8 +3,9 @@ const crypto = require("crypto");
 exports.generatePlaybackURL = (req, res) => {
   const chid = req.headers["chid"];
   const EXP = Math.floor(Date.now() / 1000) + 3600;
-  const domainEndpoint = "aa66fabcdb4b04ab982072401c5ad107-2059369177.ap-southeast-1.elb.amazonaws.com";
-  const portEndpoint = "3000"
+  const domainEndpoint =
+    "aa66fabcdb4b04ab982072401c5ad107-2059369177.ap-southeast-1.elb.amazonaws.com";
+  const portEndpoint = "3000";
 
   // Generate signature using JavaScript
   const URL = `/live/eds/${chid}/HLS`;
