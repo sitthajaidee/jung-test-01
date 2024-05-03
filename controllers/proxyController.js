@@ -53,7 +53,7 @@ exports.proxyRequest = async (req, res) => {
       contentType = "application/vnd.apple.mpegurl"; // Setting content type for ".m3u8" files
     }
 
-    // Enable CORS
+    // Enable CORS 02
     res.set("Access-Control-Allow-Origin", "*"); // Allow requests from any origin
     res.set("Access-Control-Allow-Methods", "GET"); // Allow GET requests
 
