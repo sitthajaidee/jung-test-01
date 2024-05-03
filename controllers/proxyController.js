@@ -1,5 +1,6 @@
 const request = require("request-promise");
 const crypto = require("crypto");
+const cors = require("cors");
 
 exports.proxyRequest = async (req, res) => {
   try {
@@ -51,6 +52,10 @@ exports.proxyRequest = async (req, res) => {
       });
       contentType = "application/vnd.apple.mpegurl"; // Setting content type for ".m3u8" files
     }
+
+    // Enable CORS
+    res.set("Access-Control-Allow-Origin", "*"); // Allow requests from any origin
+    res.set("Access-Control-Allow-Methods", "GET"); // Allow GET requests
 
     res.type(contentType);
     res.send(modifiedResponse);
