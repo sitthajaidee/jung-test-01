@@ -7,7 +7,7 @@ exports.proxyRequest = async (req, res) => {
     const { chid, playlist } = req.params;
 
     const domainEndpoint =
-      "aa7b2ef87fef746d5ac7cc86af3b49b8-479906405.ap-southeast-1.elb.amazonaws.com";
+      "";
     const portEndpoint = "3000";
 
     // Generate new rfkpoc
