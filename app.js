@@ -29,5 +29,5 @@ const options = {
 // Create HTTPS server with options
 const server = https.createServer(options, app);
 
-app.listen(port, () => console.log("Listening on port " + port));
+server.listen(port, () => console.log("Listening on port " + port));
 module.exports = app;
