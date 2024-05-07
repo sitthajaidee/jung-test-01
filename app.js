@@ -26,10 +26,9 @@ const options = {
   cert: fs.readFileSync(certPath),
 };
 
-// app.listen(port, () => {
+// https.createServer(app).listen(port, () => {
 //   console.log(`Server is running on http://localhost:${port}`);
 // });
 
-https.createServer(app).listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+app.listen(port, () => console.log("Listening on port " + port));
+module.exports = app;
