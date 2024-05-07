@@ -49,6 +49,7 @@ jobs:
 
       - name: deploy to EKS
         run : |
+          kubectl delete pods -l app=mani-manip
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
           

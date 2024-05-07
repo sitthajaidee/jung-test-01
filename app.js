@@ -5,11 +5,13 @@ const proxyRoutes = require("./routes/proxyRoutes");
 const https = require("https");
 const fs = require("fs");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use(playbackRoutes);
 app.use(proxyRoutes);

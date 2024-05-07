@@ -16,6 +16,6 @@ exports.generatePlaybackURL = (req, res) => {
   hmac.update(`${URL}/${EXP}`);
   const SIG = hmac.digest("hex");
 
-  const playbackURL = `https://${domainEndpoint}:${portEndpoint}/live/eds/${chid}/HLS/${chid}.m3u8?rfkpoc=${EXP}_${SIG}`;
-  res.json({ playbackURL });
+  const PlaybackURL = `https://${domainEndpoint}:${portEndpoint}/live/eds/${chid}/HLS/${chid}.m3u8?rfkpoc=${EXP}_${SIG}`;
+  res.json({ PlaybackURL });
 };
