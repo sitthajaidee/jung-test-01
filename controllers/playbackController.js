@@ -4,7 +4,7 @@ exports.generatePlaybackURL = (req, res) => {
   const chid = req.headers["chid"];
   const EXP = Math.floor(Date.now() / 1000) + 3600;
   const domainEndpoint =
-    "aa7b2ef87fef746d5ac7cc86af3b49b8-479906405.ap-southeast-1.elb.amazonaws.com";
+    "ad0cdde5d177c4da09bdfe98554fd78b-113930298.ap-southeast-1.elb.amazonaws.com";
   const portEndpoint = "3000";
 
   // Generate signature using JavaScript
