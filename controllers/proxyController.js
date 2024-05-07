@@ -48,7 +48,7 @@ exports.proxyRequest = async (req, res) => {
     } else {
       pattern = new RegExp(`${chid}-\\w+=\\d+\\.m3u8`, "g");
       modifiedResponse = response.replace(pattern, (match) => {
-        return `https://${domainEndpoint}:${portEndpoint}/live/eds/${chid}/HLS/${match}?rfkpoc=${rfkpoc}`;
+        return `http://${domainEndpoint}:${portEndpoint}/live/eds/${chid}/HLS/${match}?rfkpoc=${rfkpoc}`;
       });
       contentType = "application/vnd.apple.mpegurl"; // Setting content type for ".m3u8" files
     }
