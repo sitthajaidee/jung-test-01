@@ -14,6 +14,20 @@ app.use(bodyParser.json());
 app.use(playbackRoutes);
 app.use(proxyRoutes);
 
-app.listen(port, () => console.log("Listening on port " + port));
+// Paths to SSL/TLS certificate and key
+const keyPath = path.join(__dirname, "certs", "localhost.key");
+const certPath = path.join(__dirname, "certs", "localhost.crt");
 
-module.exports = app;
+// Read SSL/TLS certificate and key
+const options = {
+  key: fs.readFileSync(keyPath),
+  cert: fs.readFileSync(certPath),
+};
+
+// app.listen(port, () => {
+//   console.log(`Server is running on http://localhost:${port}`);
+// });
+
+https.createServer(options, app).listen(port, () => {
+  console.log(`Server is running on https://localhost:${port}`);
+});
