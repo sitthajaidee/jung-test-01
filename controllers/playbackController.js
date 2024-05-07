@@ -7,7 +7,6 @@ exports.generatePlaybackURL = (req, res) => {
     "ad0cdde5d177c4da09bdfe98554fd78b-113930298.ap-southeast-1.elb.amazonaws.com";
   const portEndpoint = "3000";
 
-  // Generate signature using JavaScript
   const URL = `/live/eds/${chid}/HLS`;
   const BASE64_KEY =
     "4LmA4Lit4LmE4Lit4LmA4Lit4Liq4Lie4Li14LmC4Lit4LiL4Li1IOC5gOC4reC5hOC4reC5gOC4reC4quC4nuC4teC5guC4reC4i+C4tQ==";
