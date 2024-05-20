@@ -1,7 +1,3 @@
-provider "aws" {
-  region = var.aws_region
-}
-
 resource "aws_vpc" "jung-main" {
   cidr_block = "10.7.0.0/16"
   
