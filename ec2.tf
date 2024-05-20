@@ -3,7 +3,7 @@ resource "aws_instance" "jung-ec2" {
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.jung-subnet-a.id
   vpc_security_group_ids = [aws_security_group.jung-sg.name]
-  iam_instance_profile = aws_iam_instance_profile.ssm_instance_profile.name
+  iam_instance_profile = data.aws_iam_instance_profile.ssm_instance_profile.name
 
   tags = {
     Name      = "jung-ec2"
