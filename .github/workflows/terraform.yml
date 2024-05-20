@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - terraform-01
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -26,12 +27,6 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-
-      - name: Terraform Import IAM Role
-        run: terraform import aws_iam_role.ssm_role ssm-role
-
-      - name: Terraform Import IAM Instance Profile
-        run: terraform import aws_iam_instance_profile.ssm_instance_profile ssm-instance-profile
 
       - name: Terraform Validate
         run: terraform validate
