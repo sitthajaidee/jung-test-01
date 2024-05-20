@@ -33,7 +33,7 @@ jobs:
         # Note: Replace <instance-id> with your actual instance ID.
 
       - name: Import existing Security Group
-        run: terraform import aws_security_group.jung-sg terraform-20240520055054796300000001
+        run: terraform import aws_security_group.jung-sg sg-0bd9413fe8859fc30
         # Note: Replace <security-group-id> with your actual security group ID.
 
 
