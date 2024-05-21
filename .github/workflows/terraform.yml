@@ -29,7 +29,7 @@ jobs:
         run: terraform init
 
       - name: Import existing EC2 instance
-        run: terraform import aws_instance.jung-ec2 i-08dfaf1d272e3fd58
+        run: terraform import aws_instance.jung-ec2 i-09b2be7d47f69843b
         # Note: Replace <instance-id> with your actual instance ID.
 
       - name: Import existing Security Group
