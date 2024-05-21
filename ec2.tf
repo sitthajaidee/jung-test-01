@@ -12,18 +12,21 @@ resource "aws_instance" "jung-ec2" {
               systemctl enable amazon-ssm-agent
               systemctl start amazon-ssm-agent
 
-              # Add the MongoDB repository
-              tee /etc/yum.repos.d/mongodb-org-6.0.repo <<EOL
-              [mongodb-org-6.0]
+              # Add the MongoDB 4.4 repository
+              tee /etc/yum.repos.d/mongodb-org-4.4.repo <<EOL
+              [mongodb-org-4.4]
               name=MongoDB Repository
-              baseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/6.0/x86_64/
+              baseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/4.4/x86_64/
               gpgcheck=1
               enabled=1
-              gpgkey=https://www.mongodb.org/static/pgp/server-6.0.asc
+              gpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc
               EOL
 
               # Install mongodb-org-shell
               yum install -y mongodb-org-shell
+
+              # Set NODE_OPTIONS to bypass OpenSSL configuration error
+              export NODE_OPTIONS=--openssl-legacy-provider
               EOF
 
   tags = {
