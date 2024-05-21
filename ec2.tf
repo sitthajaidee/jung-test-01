@@ -22,11 +22,11 @@ resource "aws_instance" "jung-ec2" {
               gpgkey=https://www.mongodb.org/static/pgp/server-6.0.asc
               EOL
 
-              # Remove any existing mongosh package to avoid conflicts
-              yum remove -y mongodb-mongosh
-
               # Install mongodb-mongosh-shared-openssl3
               yum install -y mongodb-mongosh-shared-openssl3
+
+              # Install mongodb-mongosh
+              yum install mongodb-mongosh
               EOF
 
   tags = {
